@@ -5,8 +5,9 @@ import Char.SScript
 import Control.Monad (ap)
 import Test.Hspec
 
-shouldBeIdempotent :: (Eq a, Show a) => (a -> a) -> a -> Expectation
-shouldBeIdempotent = ap shouldBe
+-- A fixed point is a value that doesn't change under application of a function
+shouldBeFixed :: (Eq a, Show a) => (a -> a) -> a -> Expectation
+shouldBeFixed = ap shouldBe
 
 convertDecimals :: (Char -> Char) -> String
 convertDecimals f = (map f . concatMap show) [0 .. 9]
@@ -26,7 +27,7 @@ spec = do
         it "should work for selected letters" $
             map subscript "aeioruvx" `shouldBe` "ₐₑᵢₒᵣᵤᵥₓ"
         it "should return the same char if it can't be subscripted" $
-            shouldBeIdempotent (map subscript) "AEIORUVX"
+            shouldBeFixed (map subscript) "AEIORUVX"
 
     context "Char.SScript.superscript" $ do
         it "should work for a single char" $
@@ -40,7 +41,7 @@ spec = do
             `shouldBe`
             "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂ"
         it "should return the same char if it can't be superscripted" $
-            shouldBeIdempotent (map superscript) "qCFQSVXYZ"
+            shouldBeFixed (map superscript) "qCFQSVXYZ"
 
     context "Char.SScript.formatSS" $ do
         it "should convert chars following an underscore to its subscript, \
@@ -51,7 +52,8 @@ spec = do
             "NaMg₃(Al,Mg)₆B₃Si₆O₂₇(OH)"
         it "should convert chars following a caret to its superscript" $
             formatSS "(a^n)^{r+s}" `shouldBe` "(aⁿ)ʳ⁺ˢ"
-        it "should convert strings containing a mixture of underscores and carets" $
+        it "should convert strings containing a mixture of \
+            \underscores and carets" $
             formatSS "(x_{12} - x_{21})^{25} + (y_1 - y_2)^2"
             `shouldBe`
             "(x₁₂ - x₂₁)²⁵ + (y₁ - y₂)²"
