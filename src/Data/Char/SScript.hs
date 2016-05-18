@@ -3,6 +3,7 @@
 -- License     : BSD3
 -- Maintainer  : khalil.fazal@uoit.net
 -- Portability : portable
+-- Stability   : stable
 --
 -- Formats Strings with subscript or superscript characters
 module Data.Char.SScript (
