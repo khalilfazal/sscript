@@ -3,6 +3,6 @@
 
 Formats Strings with superscript or subscript characters
 
-See [the test file](test/Char/SScriptSpec.hs) for hints on how to use this library.
+See [the test file](test/Data/Char/SScriptSpec.hs) for hints on how to use this library.
 
 Here is the [Hackage page](https://hackage.haskell.org/package/sscript).
