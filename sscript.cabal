@@ -16,7 +16,7 @@ library
   hs-source-dirs:   src
   exposed-modules:  Char.SScript
   default-language: Haskell2010
-  build-depends:    base >= 4.7 && < 5
+  build-depends:    base < 5
 
 test-suite sscript-test
   hs-source-dirs:   test
