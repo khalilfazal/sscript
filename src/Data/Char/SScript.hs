@@ -4,11 +4,11 @@
 -- Maintainer  : khalil.fazal@uoit.net
 -- Portability : portable
 --
--- Formats Strings with superscript or subscript characters
-module Char.SScript (
-    formatSS,
+-- Formats Strings with subscript or superscript characters
+module Data.Char.SScript (
     subscript,
-    superscript
+    superscript,
+    formatSS
 ) where
 
 import Control.Monad (ap)
@@ -23,7 +23,8 @@ subscripts =
         "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑᵢₒᵣᵤᵥₓ"
 
 -- | subscripts a char
--- > subscript '0' == '₀'
+--
+-- @'subscript' '0' == '₀'@
 subscript :: Char -> Char
 subscript = convertOrId subscripts
 
@@ -33,12 +34,14 @@ superscripts =
         "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂ"
 
 -- | superscripts a char
--- > subscript '0' == '⁰'
+--
+-- @'subscript' '0' == '⁰'@
 superscript :: Char -> Char
 superscript = convertOrId superscripts
 
 -- | formats a string
--- > formatSS "x_1^2 + x_2^2 + x_3^2 = z^2" == "x₁² + x₂² + x₃² = z²"
+--
+-- @'formatSS' "x_1^2 + x_2^2 + x_3^2 = z^2" == "x₁² + x₂² + x₃² = z²"@
 formatSS :: String -> String
 formatSS ('^' : '{' : xs) = formatUntilBrace superscript xs
 formatSS ('_' : '{' : xs) = formatUntilBrace subscript   xs

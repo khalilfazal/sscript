@@ -1,6 +1,6 @@
-module Char.SScriptSpec where
+module Data.Char.SScriptSpec where
 
-import Char.SScript
+import Data.Char.SScript
 
 import Control.Monad (ap)
 import Test.Hspec
