@@ -44,7 +44,8 @@ spec = do
 
     context "Char.SScript.formatSS" $ do
         it "should convert chars following an underscore to its subscript, \
-            \like in the chemical formula for dravite" $
+            \like in the chemical formula for dravite: \
+            \https://en.wikipedia.org/wiki/Tourmaline#Dravite" $
             formatSS "NaMg_{3}(Al,Mg)_6B_3Si_6O_{27}(OH)"
             `shouldBe`
             "NaMg₃(Al,Mg)₆B₃Si₆O₂₇(OH)"
