@@ -17,7 +17,7 @@ symbols = "+-=()"
 
 spec :: Spec
 spec = do
-    context "Char.SScript.subscript" $ do
+    context "Data.Char.SScript.subscript" $ do
         it "should work for a single char" $
             subscript '0' `shouldBe` '₀'
         it "should work for all single digit decimals" $
@@ -29,7 +29,7 @@ spec = do
         it "should return the same char if it can't be subscripted" $
             shouldBeFixed (map subscript) "AEIORUVX"
 
-    context "Char.SScript.superscript" $ do
+    context "Data.Char.SScript.superscript" $ do
         it "should work for a single char" $
             superscript '0' `shouldBe` '⁰'
         it "should work for all single digit decimals" $
@@ -43,7 +43,7 @@ spec = do
         it "should return the same char if it can't be superscripted" $
             shouldBeFixed (map superscript) "qCFQSVXYZ"
 
-    context "Char.SScript.formatSS" $ do
+    context "Data.Char.SScript.formatSS" $ do
         it "should convert chars following an underscore to its subscript, \
             \like in the chemical formula for dravite: \
             \https://en.wikipedia.org/wiki/Tourmaline#Dravite" $
